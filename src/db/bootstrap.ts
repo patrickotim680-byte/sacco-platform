@@ -14,7 +14,9 @@ export async function bootstrap() {
   const t = await db.execute(sql`select to_regclass('public.organisations') as t`);
   if (!t.rows[0].t) await migrate(db, { migrationsFolder: path.join(process.cwd(), "drizzle") });
   await pool.query(SETUP_SQL);
-  if (process.env.SEED_DEMO !== "false") {
+  // Demo data is opt-in in production: it seeds only when SEED_DEMO=true. In development it seeds unless SEED_DEMO=false.
+  const shouldSeed = process.env.SEED_DEMO === "true" || (process.env.SEED_DEMO !== "false" && process.env.NODE_ENV !== "production");
+  if (shouldSeed) {
     const c = await db.execute(sql`select count(*)::int as n from organisations`);
     if (Number(c.rows[0].n) === 0) {
       const { seedDemo } = await import("@/db/seed");
