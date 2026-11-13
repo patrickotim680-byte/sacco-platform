@@ -1,0 +1,8 @@
+.storage
+.next
+node_modules
+backups
+.env
+
+.storage
+*.log
