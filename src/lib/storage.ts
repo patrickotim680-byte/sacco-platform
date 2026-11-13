@@ -16,7 +16,8 @@ function supabase() {
   return url && key ? { url, key } : null;
 }
 
-const headers = (key: string, extra: Record<string, string> = {}) => ({ Authorization: `Bearer ${key}`, apikey: key, ...extra });
+// New-style keys (sb_secret_...) are not JWTs and go in the apikey header only; legacy service_role JWTs are also sent as a Bearer token.
+const headers = (key: string, extra: Record<string, string> = {}): Record<string, string> => (key.startsWith("sb_") ? { apikey: key, ...extra } : { Authorization: `Bearer ${key}`, apikey: key, ...extra });
 const encodePath = (p: string) => p.split("/").map(encodeURIComponent).join("/");
 
 async function ensureBucket(url: string, key: string) {
