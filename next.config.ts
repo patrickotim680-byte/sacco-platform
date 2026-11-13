@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   serverExternalPackages: ["pdfkit", "exceljs", "pg"],
   poweredByHeader: false,
+  // The SQL migrations are read at start-up by src/db/bootstrap.ts, so they must ship with the serverless bundle.
+  outputFileTracingIncludes: { "/**": ["./drizzle/**/*"] },
   async headers() {
     return [{
       source: "/(.*)",
