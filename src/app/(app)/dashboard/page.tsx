@@ -59,7 +59,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
             <Stat label="Overdue loans" value={`${d.loans.overdueCount} (${ugx(d.loans.overdueAmount)})`} tone={d.loans.overdueCount ? "danger" : "ok"} sub={`Portfolio at risk ${d.loans.parPct.toFixed(1)}% - NPL ${d.loans.nplPct.toFixed(1)}%`} />
             <Stat label="Income less expenditure" value={ugx(d.income - d.expense)} tone={d.income - d.expense < 0 ? "danger" : "ok"} sub={`Income ${ugx(d.income)} - Expenses ${ugx(d.expense)}`} />
           </div>
-          <div className="grid lg:grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <Card title="Savings flows (last 12 months)"><BarChart title="Deposits and withdrawals by month" data={d.trend} series={[{ key: "deposits", label: "Deposits", color: "var(--brand)" }, { key: "withdrawals", label: "Withdrawals", color: "#d4880f" }]} /></Card>
             <Card title="Lending flows (last 12 months)"><BarChart title="Disbursements and repayments by month" data={d.trend} series={[{ key: "disbursed", label: "Disbursed", color: "#2e6bd6" }, { key: "repayments", label: "Repaid", color: "var(--brand)" }]} /></Card>
             <Card title="Income and expenditure (last 12 months)"><BarChart title="Income and expenditure by month" data={d.ie} series={[{ key: "income", label: "Income", color: "var(--brand)" }, { key: "expense", label: "Expenditure", color: "#c0392b" }]} /></Card>
@@ -67,7 +67,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
             <Card title="Loan portfolio health (principal by days overdue)"><HBars data={d.loans.buckets} colors={["var(--brand)", "#d4a30f", "#d4880f", "#c8571f", "#b42318"]} /></Card>
             <Card title="Savings by product"><HBars data={d.byProduct.map((p) => ({ label: `${p.label} (${p.count})`, value: p.value }))} /></Card>
           </div>
-          <div className="grid lg:grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
             <Card title="Cash positions" className="lg:col-span-1">
               <ul className="space-y-2">{d.cash.map((c) => <li key={c.code} className="flex justify-between text-sm"><span>{c.name}</span><Money v={c.balance} className={c.balance < 0 ? "text-danger" : ""} /></li>)}</ul>
               <p className="hint mt-3">From the general ledger, not a stored figure.</p>

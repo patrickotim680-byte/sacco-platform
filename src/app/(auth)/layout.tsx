@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-dvh grid lg:grid-cols-2">
+    <div className="min-h-dvh grid grid-cols-1 lg:grid-cols-2">
       <aside className="hidden lg:flex flex-col justify-between p-10 bg-[#0b3d2e] text-white">
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-emerald-300">Softronics</p>

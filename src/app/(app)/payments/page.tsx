@@ -40,7 +40,7 @@ export default async function Payments() {
           <p className="hint">If the provider API is not configured, the request is recorded as awaiting confirmation and an officer confirms it with the provider transaction ID after checking the statement.</p>
         </ModalForm>)} />
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4"><Stat label="Mobile money payments posted" value={Number(st.mm_total)} sub={`${ugx(st.mm_in)} received`} /><Stat label="Recorded manually (no provider request)" value={Number(st.mm_manual)} /><Stat label="Awaiting confirmation" value={awaiting.length} tone={awaiting.length ? "warn" : "ok"} /><Stat label="Confirmed requests" value={reqs.filter((x) => x.r.status === "confirmed").length} /></div>
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">{integ.map((i) => {
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">{integ.map((i) => {
         const p = i.provider === "mtn_momo" || i.provider === "airtel_money" ? providerEnv(i.provider) : null;
         return (
           <Card key={i.id} title={i.displayName} actions={<Badge value={p ? (p.configured ? `API credentials set (${p.env})` : "API not configured") : "Always available"} tone={p ? (p.configured ? "badge-info" : "badge-warn") : "badge-ok"} />}>

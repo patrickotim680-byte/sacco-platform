@@ -9,7 +9,9 @@
     "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "test": "vitest run"
+    "test": "vitest run",
+    "sim": "tsx scripts/simulate.ts",
+    "sim:users": "tsx scripts/sim-users.ts"
   },
   "dependencies": {
     "@types/pdfkit": "^0.17.7",

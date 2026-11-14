@@ -56,7 +56,7 @@ a { color: inherit; }
 .num { font-variant-numeric: tabular-nums; }
 
 @layer components {
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+  .card { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
   .card-pad { padding: 16px; }
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-weight: 600; font-size: 13px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; white-space: nowrap; transition: background .12s; }
   .btn:hover { background: var(--surface-2); }

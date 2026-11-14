@@ -252,7 +252,7 @@ export async function sendRepaymentReminders(orgId: string, today = todayEAT()) 
   const [org] = await db.select().from(organisations).where(eq(organisations.id, orgId));
   const days = getSettings(org).repaymentReminderDays;
   const rows = await db.select({ s: loanSchedule, l: loans }).from(loanSchedule).innerJoin(loans, eq(loans.id, loanSchedule.loanId))
-    .where(and(eq(loanSchedule.orgId, orgId), eq(loans.status, "active"), sql`${loanSchedule.status} in ('pending','partial')`, sql`${loanSchedule.dueDate} between ${today} and (${today}::date + ${days})`));
+    .where(and(eq(loanSchedule.orgId, orgId), eq(loans.status, "active"), sql`${loanSchedule.status} in ('pending','partial')`, sql`${loanSchedule.dueDate} between ${today} and (${today}::date + ${days}::int)`));
   let c = 0;
   await db.transaction(async (tx) => {
     for (const { s, l } of rows) {

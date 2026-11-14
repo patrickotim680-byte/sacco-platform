@@ -56,7 +56,7 @@ export default async function Applications({ searchParams }: { searchParams: Pro
                   <p className="text-sm text-muted">{p} - {Number(rate)}% {method} - applied {fmtDate(a.createdAt.toISOString())}</p></div>
                 <div className="text-right"><p className="text-lg font-semibold num">{ugx(a.amount)}</p><p className="text-sm text-muted">{a.termMonths} months <Badge value={a.status} /></p></div>
               </div>
-              <div className="grid sm:grid-cols-3 gap-4 mt-3 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3 text-sm">
                 <div><p className="lbl">Purpose</p><p>{a.purpose ?? "-"}</p>{a.reviewNote && <p className="text-muted mt-1">Note: {a.reviewNote}</p>}</div>
                 <div><p className="lbl">Eligibility at submission</p><p>Savings-based limit: <b className="num">{ugx(el.savingsLimit ?? 0)}</b></p>{(el.warnings ?? []).map((w) => <p key={w} className="text-warn text-xs">{w}</p>)}</div>
                 <div><p className="lbl">Guarantors ({accepted}/{need} accepted) and collateral</p>
