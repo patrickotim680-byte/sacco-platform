@@ -33,6 +33,24 @@
   color-scheme: dark;
 }
 
+/* Sign-in and sign-up screens: black and gold, independent of the app theme */
+.auth-dark {
+  --bg: #050504;
+  --surface: #111110;
+  --surface-2: #1a1917;
+  --line: #2b2822;
+  --fg: #f2f1ee;
+  --muted: #a29d92;
+  --brand: #e3ae33;
+  --brand-fg: #1a1203;
+  --danger: #ff8a80;
+  --warn: #f5a742;
+  --ok: #47cd89;
+  --info: #6ea2ff;
+  color-scheme: dark;
+}
+.auth-dark .card { background: #0f0f0e; border-color: #2b2822; box-shadow: 0 24px 60px rgba(0, 0, 0, .55); border-radius: 16px; }
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);

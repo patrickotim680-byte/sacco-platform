@@ -4,9 +4,9 @@ import "./globals.css";
 import { Toaster } from "@/components/forms";
 
 export const metadata: Metadata = {
-  title: { default: "Softronics SACCO Platform", template: "%s | Softronics SACCO" },
-  description: "Multi-tenant SACCO, VSLA and savings group management platform for Uganda.",
-  applicationName: "Softronics SACCO Platform",
+  title: { default: "SokoSave", template: "%s | SokoSave" },
+  description: "SokoSave: savings, loans and group management for SACCOs and savings groups in Uganda.",
+  applicationName: "SokoSave",
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#0b6e4f" };
 

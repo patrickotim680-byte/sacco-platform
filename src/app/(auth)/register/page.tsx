@@ -7,8 +7,8 @@ export const metadata = { title: "Register your organisation" };
 export default function RegisterPage() {
   return (
     <div className="card card-pad">
-      <h2 className="text-xl font-semibold">Register your organisation</h2>
-      <p className="text-sm text-muted mb-4">Creates an isolated workspace with a 30-day trial on the Starter plan and a standard chart of accounts.</p>
+      <h2 className="text-xl font-semibold">Create your SokoSave account</h2>
+      <p className="text-sm text-muted mb-5">Set up your SACCO or savings group. Your workspace starts with a 30-day free trial and a ready-made chart of accounts.</p>
       <ActionForm action={registerAction} submit="Create workspace" reset={false}>
         <Field label="Organisation name" name="orgName" required placeholder="e.g. Kawempe Teachers SACCO" />
         <Grid>
@@ -26,7 +26,7 @@ export default function RegisterPage() {
         </Grid>
         <label className="flex gap-2 text-sm items-start"><input type="checkbox" name="terms" className="mt-1" /> <span>I accept the terms of service and confirm member personal data will be handled in line with the Uganda Data Protection and Privacy Act, 2019.</span></label>
       </ActionForm>
-      <p className="text-sm mt-5 text-center"><Link href="/login" className="text-brand font-medium">Already registered? Sign in</Link></p>
+      <p className="text-sm mt-5 text-center"><Link href="/login" className="text-brand font-medium">Already have an account? Sign in</Link></p>
     </div>
   );
 }

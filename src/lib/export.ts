@@ -16,7 +16,7 @@ export function reportCsv(r: Report) {
 
 export async function reportXlsx(r: Report, orgName: string) {
   const wb = new ExcelJS.Workbook();
-  wb.creator = "Softronics SACCO Platform";
+  wb.creator = "SokoSave";
   r.sections.forEach((s, i) => {
     const ws = wb.addWorksheet(`${i + 1}. ${s.title}`.replace(/[\\/?*[\]:]/g, " ").slice(0, 31));
     ws.addRow([orgName]).font = { bold: true, size: 13 };
@@ -75,7 +75,7 @@ export function reportPdf(r: Report, orgName: string): Promise<Buffer> {
     const range = doc.bufferedPageRange();
     for (let i = 0; i < range.count; i++) {
       doc.switchToPage(i);
-      doc.font("Helvetica").fontSize(7.5).fillColor("#777").text(`Softronics SACCO Platform - ${orgName} - Page ${i + 1} of ${range.count}`, 36, doc.page.height - 28, { width: W, align: "center", lineBreak: false });
+      doc.font("Helvetica").fontSize(7.5).fillColor("#777").text(`SokoSave - ${orgName} - Page ${i + 1} of ${range.count}`, 36, doc.page.height - 28, { width: W, align: "center", lineBreak: false });
     }
     doc.end();
   });

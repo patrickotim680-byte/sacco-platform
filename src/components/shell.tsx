@@ -56,7 +56,7 @@ export function Shell({ items, orgName, userName, roleLabel, brand, logout, chil
     <div className="min-h-dvh lg:flex" style={{ ["--brand" as string]: brand }}>
       <aside className="hidden lg:flex lg:w-64 shrink-0 flex-col border-r border-line bg-surface sticky top-0 h-dvh no-print">
         <div className="px-5 py-4 border-b border-line">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-brand">Softronics SACCO</p>
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-brand">SokoSave</p>
           <p className="font-semibold truncate" title={orgName}>{orgName}</p>
         </div>
         {nav}
