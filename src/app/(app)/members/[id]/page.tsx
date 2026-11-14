@@ -51,7 +51,7 @@ export default async function MemberPage({ params }: { params: Promise<{ id: str
         <div className="card card-pad"><p className="text-xs text-muted">Transactions</p><p className="text-xl font-semibold">{Number(cnt.n)}</p></div>
       </div>
       {m.status === "suspended" && <p className="mb-4 text-sm bg-danger/10 text-danger border border-danger/30 rounded-lg px-3 py-2">Suspended: {m.statusReason}</p>}
-      <div className="grid lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card title="Personal details"><dl>
           <KV k="Phone">{formatUgPhone(m.phone)}</KV><KV k="Email">{m.email ?? "-"}</KV><KV k="Gender">{label(m.gender) || "-"}</KV><KV k="Date of birth">{fmtDate(m.dateOfBirth)}</KV>
           <KV k="National ID">{m.nationalId ?? "-"}</KV><KV k="Occupation">{m.occupation ?? "-"}</KV><KV k="District">{m.district ?? "-"}</KV><KV k="Address">{m.address ?? "-"}</KV>
@@ -92,7 +92,7 @@ export default async function MemberPage({ params }: { params: Promise<{ id: str
                 </div></td></tr>))}</tbody></TableWrap>
         )}
       </Card>
-      <div className="grid lg:grid-cols-2 gap-4 mt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
         <Card title="Loans" pad={false}>
           {memberLoans.length === 0 ? <Empty title="No loans" /> : <TableWrap><thead><tr><th>Loan</th><th>Disbursed</th><th className="r">Principal</th><th className="r">Outstanding</th><th>Status</th></tr></thead>
             <tbody>{memberLoans.map((l) => <tr key={l.id}><td><Link className="text-brand hover:underline" href={`/loans/${l.id}`}>{l.loanNo}</Link></td><td>{fmtDate(l.disbursedAt)}</td><td className="r num">{ugx(l.principal)}</td><td className="r num">{ugx(Number(l.principal) - Number(l.principalPaid))}</td><td><Badge value={l.status} /></td></tr>)}</tbody></TableWrap>}

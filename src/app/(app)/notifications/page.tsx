@@ -32,7 +32,7 @@ export default async function NotificationsPage({ searchParams }: { searchParams
         <ActionForm action={dispatchQueueAction} submit="Process queue" inline reset={false}><span /></ActionForm>
         <ModalForm trigger="New announcement" title="Announcement to all active members" action={sendAnnouncementAction} submit="Send announcement"><Field label="Title" name="title" required /><Field label="Message" name="body" required><textarea id="body" name="body" required className="input" /></Field></ModalForm></>} />
       <Card title="Delivery channels" className="mb-4">
-        <div className="grid sm:grid-cols-4 gap-3 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-sm">
           <div><p className="font-semibold">In-app</p><Badge value="Live" tone="badge-ok" /></div>
           {([["SMS (Africa's Talking)", prov.sms, "AT_USERNAME, AT_API_KEY"], ["Email (Resend)", prov.email, "RESEND_API_KEY, EMAIL_FROM"], ["WhatsApp Cloud API", prov.whatsapp, "WHATSAPP_TOKEN, WHATSAPP_PHONE_ID"]] as const).map(([name, ok, env]) => (
             <div key={name}><p className="font-semibold">{name}</p>{ok ? <Badge value="Credentials configured (untested)" tone="badge-info" /> : <Badge value="Not configured - messages are SIMULATED" tone="badge-warn" />}{!ok && <p className="text-xs text-muted mt-1">Set {env}</p>}</div>))}

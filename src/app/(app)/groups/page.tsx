@@ -29,7 +29,7 @@ export default async function GroupsPage() {
           <RulesFields />
         </ModalForm>)} />
       {rows.length === 0 ? <Card><Empty title="No groups yet">Register a VSLA or savings group, add its members and open a savings cycle.</Empty></Card> : (
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">{rows.map(({ g, members }, i) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">{rows.map(({ g, members }, i) => {
           const c = cycles.find((x) => x.groupId === g.id && x.status === "open");
           return (
             <Link key={g.id} href={`/groups/${g.id}`} className="card card-pad hover:bg-surface-2 block">

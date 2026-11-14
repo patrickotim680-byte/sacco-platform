@@ -63,7 +63,7 @@ export default async function Admin({ searchParams }: { searchParams: Promise<Re
     const st = Object.fromEntries((await db.select().from(platformSettings)).map((s) => [s.key, s.value]));
     const pc = providerConfig();
     body = (
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title="Platform settings"><ActionForm action={adminSettingsAction} submit="Save settings">
           <label className="flex gap-2 text-sm items-center"><input type="checkbox" name="signup_enabled" defaultChecked={st.signup_enabled !== false} /> Allow new organisation self-registration</label>
           <label className="flex gap-2 text-sm items-center"><input type="checkbox" name="maintenance_mode" defaultChecked={st.maintenance_mode === true} /> Maintenance mode flag</label>
@@ -78,7 +78,7 @@ export default async function Admin({ searchParams }: { searchParams: Promise<Re
     body = (
       <>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3"><Stat label="Organisations" value={orgs.length} sub={`${active} active`} /><Stat label="Total members (count only)" value={orgs.reduce((s, o) => s + Number(o.members), 0).toLocaleString()} /><Stat label="Transactions processed (count)" value={orgs.reduce((s, o) => s + Number(o.txns), 0).toLocaleString()} /><Stat label="Monthly recurring revenue" value={ugx(mrr)} sub="Active paying, non-demo orgs" /></div>
-        <div className="grid lg:grid-cols-2 gap-4 mt-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           <Card title="Platform health"><ul className="text-sm space-y-2"><li className="flex justify-between"><span>Database</span><Badge value="Connected" tone="badge-ok" /></li><li className="flex justify-between"><span>Query latency</span><span className="num">{dbMs} ms</span></li><li className="flex justify-between"><span>Suspended organisations</span><span>{orgs.filter((o) => o.status === "suspended").length}</span></li><li className="flex justify-between"><span>Subscriptions past due</span><span>{orgs.filter((o) => o.sub_status === "past_due").length}</span></li></ul><p className="hint mt-3">This console shows organisation-level usage only. It never lists member balances or personal data.</p></Card>
           <Card title="Organisations by plan" pad={false}><TableWrap><thead><tr><th>Plan</th><th className="r">Organisations</th><th className="r">Price / month</th></tr></thead><tbody>{byPlan.map(({ p, n }) => <tr key={p.id}><td>{p.name}</td><td className="r num">{n}</td><td className="r num">{ugx(p.monthlyPrice)}</td></tr>)}</tbody></TableWrap></Card>
         </div>

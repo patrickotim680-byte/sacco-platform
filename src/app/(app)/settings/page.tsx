@@ -54,14 +54,14 @@ export default async function Settings({ searchParams }: { searchParams: Promise
     const [uc] = await db.select({ n: sql<number>`count(*)` }).from(orgUsers).where(eq(orgUsers.orgId, ctx.orgId));
     const inv = await db.select().from(subscriptionInvoices).where(eq(subscriptionInvoices.orgId, ctx.orgId)).orderBy(desc(subscriptionInvoices.createdAt)).limit(10);
     body = (
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title="Subscription"><dl><KV k="Plan">{sub.p.name} <Badge value={sub.s.status} /></KV><KV k="Billing">{sub.s.billingCycle}</KV><KV k="Current period">{fmtDate(sub.s.currentPeriodStart)} - {fmtDate(sub.s.currentPeriodEnd)}</KV><KV k="Members">{Number(mc.n)} / {lim.maxMembers.toLocaleString()}</KV><KV k="Users">{Number(uc.n)} / {lim.maxUsers}</KV><KV k="Features">{sub.p.features.join(", ")}</KV></dl><p className="hint mt-2">Plan changes are made by Softronics support. Contact us from the Support page.</p></Card>
         <Card title="Invoices" pad={false}><TableWrap><thead><tr><th>Invoice</th><th>Period</th><th className="r">Amount</th><th>Status</th></tr></thead><tbody>{inv.map((i) => <tr key={i.id}><td className="num text-xs">{i.invoiceNo}</td><td>{fmtDate(i.periodStart)}</td><td className="r num">{ugx(i.amount)}</td><td><Badge value={i.status} /></td></tr>)}</tbody></TableWrap></Card>
       </div>
     );
   } else if (tab === "security") {
     body = (
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title="Change your password"><ActionForm action={changePasswordAction} submit="Change password"><Field label="Current password" name="current" type="password" required /><Field label="New password" name="password" type="password" required /><Field label="Confirm new password" name="confirm" type="password" required /></ActionForm></Card>
         <Card title="Backups and recovery">
           <ul className="text-sm space-y-2 list-disc pl-5 text-muted">

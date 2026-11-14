@@ -46,7 +46,7 @@ export default async function LoanPage({ params }: { params: Promise<{ id: strin
         <Stat label="Interest outstanding" value={ugx(active ? bal.outstanding.interest : 0)} /><Stat label="Penalties outstanding" value={ugx(active ? bal.outstanding.penalty : 0)} tone={bal.outstanding.penalty ? "warn" : undefined} />
         <Stat label="Overdue now" value={ugx(active ? bal.overdueAmount : 0)} tone={bal.overdueAmount ? "danger" : "ok"} sub={bal.daysOverdue ? `${bal.daysOverdue} days in arrears` : "Up to date"} />
       </div>
-      <div className="grid lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card title="Terms"><dl><KV k="Principal">{ugx(l.principal)}</KV><KV k="Interest">{Number(l.interestRate)}% p.a. {l.interestMethod}</KV><KV k="Term">{l.termMonths} months ({l.frequency})</KV><KV k="Disbursed">{fmtDate(l.disbursedAt)}</KV><KV k="Penalty">{Number(l.penaltyRatePct)}% per 30 days overdue after {l.graceDays} grace days</KV><KV k="Paid to date">{ugx(Number(l.principalPaid) + Number(l.interestPaid) + Number(l.penaltyPaid))}</KV></dl></Card>
         <Card title="Repayment history" className="lg:col-span-2" pad={false}>
           {reps.length === 0 ? <Empty title="No repayments yet" /> : <TableWrap><thead><tr><th>Date</th><th>Reference</th><th>Channel</th><th className="r">Amount</th><th className="r">Principal</th><th className="r">Interest</th><th className="r">Penalty</th></tr></thead>

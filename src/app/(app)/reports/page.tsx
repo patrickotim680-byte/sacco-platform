@@ -32,7 +32,7 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
   return (
     <>
       <PageHeader title="Reports" sub="Every report is generated live from the ledger and can be downloaded as PDF, Excel or CSV. Downloads are recorded in the audit trail." />
-      <div className="grid lg:grid-cols-[260px_1fr] gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4">
         <nav className="card card-pad h-fit" aria-label="Report list">
           {groupsList.map((g) => (
             <div key={g} className="mb-3 last:mb-0">
