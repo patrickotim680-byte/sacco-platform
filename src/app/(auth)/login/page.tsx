@@ -17,13 +17,13 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   const showDemo = !!demo && process.env.SHOW_DEMO_LOGINS !== "false";
   return (
     <div className="card card-pad">
-      <h2 className="text-xl font-semibold">Sign in</h2>
-      <p className="text-sm text-muted mb-4">Access your organisation workspace.</p>
+      <h2 className="text-xl font-semibold">Welcome back</h2>
+      <p className="text-sm text-muted mb-5">Sign in to your SokoSave workspace.</p>
       {sp.error === "no-org" && <p className="text-sm text-danger mb-3">Your account is not linked to an active organisation.</p>}
       <LoginForm demos={showDemo ? DEMO_LOGINS : []} password={DEMO_PASSWORD} />
       <div className="flex justify-between text-sm mt-5">
         <Link href="/forgot-password" className="text-brand font-medium">Forgot password?</Link>
-        <Link href="/register" className="text-brand font-medium">Register an organisation</Link>
+        <Link href="/register" className="text-brand font-medium">Create an account</Link>
       </div>
     </div>
   );
